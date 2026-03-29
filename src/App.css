@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Nunito:wght@400;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    font-family: "Nunito", system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #0f172a; /* Dark slate background */
+    color: white;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #1e293b, #0f172a);
+}
+
+/* Glass Panel - Matches Khushu Khushu-text/password-text vibe */
+.glass-panel {
+    z-index: 10;
+    width: 90%;
+    max-width: 400px;
+    padding: 2.5rem 2rem;
+    
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    border-radius: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255,255,255,0.02);
+    
+    animation: panelfall 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes panelfall {
+    from {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h2 {
+    font-size: 2rem;
+    font-family: "Hammersmith One", sans-serif;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-header p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    height: 55px;
+    padding: 0 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: #cbd5e1;
+    font-weight: 400;
+}
+
+.input-group input:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #818cf8;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(129, 140, 248, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Button style from Khushu Secret btn */
+.login-btn {
+    margin-top: 0.5rem;
+    width: 100%;
+    height: 55px;
+    border-radius: 50px;
+    
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6);
+}
+
+.login-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Background floating elements (breathe / float like Khushu profile) */
+.cube {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #c084fc);
+    filter: blur(40px);
+    z-index: 1;
+    opacity: 0.5;
+    animation: float-breathe 8s ease-in-out infinite alternate;
+}
+
+.cube-1 {
+    width: 250px;
+    height: 250px;
+    top: -50px;
+    right: -50px;
+    animation-delay: 0s;
+}
+
+.cube-2 {
+    width: 350px;
+    height: 350px;
+    bottom: -100px;
+    left: -100px;
+    background: linear-gradient(135deg, #3b82f6, #2dd4bf);
+    animation-delay: 2s;
+}
+
+.cube-3 {
+    width: 150px;
+    height: 150px;
+    top: 40%;
+    left: 20%;
+    background: linear-gradient(135deg, #f43f5e, #fbbf24);
+    animation-delay: 4s;
+}
+
+@keyframes float-breathe {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        transform: translateY(-40px) scale(1.1);
+    }
+}
