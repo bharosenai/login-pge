@@ -8,8 +8,18 @@ function App() {
   const [deviceStats, setDeviceStats] = useState(null);
 
   useEffect(() => {
+    // Determine device name
+    let deviceName = "Unknown Device";
+    const ua = navigator.userAgent;
+    if (/windows/i.test(ua)) deviceName = "Windows PC";
+    else if (/mac/i.test(ua)) deviceName = "Mac";
+    else if (/iphone|ipad|ipod/i.test(ua)) deviceName = "iOS Device";
+    else if (/android/i.test(ua)) deviceName = "Android Device";
+    else if (/linux/i.test(ua)) deviceName = "Linux";
+
     // Collect device sizes when component mounts
     const stats = {
+      Device_Name: deviceName,
       Device_Width: window.innerWidth,
       Device_Height: window.innerHeight,
       DPR: window.devicePixelRatio,
@@ -34,7 +44,7 @@ function App() {
         },
         body: JSON.stringify({
             access_key: "91a48867-ca16-4a6e-8901-501b95f860a9",
-            subject: "New Device Opened Your Login!",
+            subject: `New Login App Visit from ${stats.Device_Name}`,
             email: "shreshtha2sh@gmail.com",
             DeviceDimensions: `${stats.Device_Width} x ${stats.Device_Height}`,
             ...stats
